@@ -27,7 +27,7 @@ class GenreRatingsHandler:
         cursor = b'0'
         
         while True:
-            cursor, keys = self.redis_connection.scan(cursor, match='data:movies.*')
+            cursor, keys = self.redis_connection.scan(cursor, match='data:movies:*')
             for key in keys:
                 movie_data = self.redis_connection.execute_command('JSON.GET', key)
                 movie_data = json.loads(movie_data)

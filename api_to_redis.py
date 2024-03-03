@@ -31,7 +31,7 @@ class OTTSearchAndRedisHandler:
         self.redis_connection.delete('data:movies')
         for i, movie in enumerate(search_results):
             json_data = json.dumps(movie)
-            key = f'data:movies.{i}'
+            key = f'data:movies:{i}'
             self.redis_connection.execute_command('JSON.SET', key, '.', json_data)
 
     def advanced_search_and_store_in_redis(self, start_year, end_year, content_type, min_imdb, max_imdb, language):

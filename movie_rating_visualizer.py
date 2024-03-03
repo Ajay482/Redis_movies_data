@@ -29,7 +29,7 @@ class MovieDataHandler:
         ratings = []
 
         while True:
-            cursor, keys = self.redis_connection.scan(cursor, match='data:movies.*')
+            cursor, keys = self.redis_connection.scan(cursor, match='data:movies:*')
             for key in keys:
                 movie_title = self.redis_connection.execute_command('JSON.GET', key, '.title')
                 imdb_rating = self.redis_connection.execute_command('JSON.GET', key, 'imdbrating')
